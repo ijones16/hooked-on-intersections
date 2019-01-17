@@ -8,16 +8,34 @@ function TrafficIntersection() {
 
   return (
     <IntersectionContext.Provider value={intersection}>
-      <div style={{ display: "flex", flexDirection: "column" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          width: 300,
+          background: "floralwhite"
+        }}
+      >
         <div
-          style={{ marginBottom: 60, display: "flex", flexDirection: "row" }}
+          style={{
+            marginBottom: 60,
+            display: "flex",
+            flexDirection: "row",
+            alignSelf: "center"
+          }}
         >
           <Lanes direction="south" />
           <div style={{ marginTop: 25 }}>
             <Lights direction="north" />
           </div>
         </div>
-        <div style={{ display: "flex", flexDirection: "row" }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between"
+          }}
+        >
           <div
             style={{
               marginBottom: 60,
@@ -26,7 +44,9 @@ function TrafficIntersection() {
             }}
           >
             <Lanes direction="east" />
-            <Lights direction="west" />
+            <div style={{ marginLeft: 11 }}>
+              <Lights direction="west" />
+            </div>
           </div>
           <div
             style={{
@@ -39,7 +59,9 @@ function TrafficIntersection() {
             <Lanes direction="west" />
           </div>
         </div>
-        <div style={{ display: "flex", flexDirection: "row" }}>
+        <div
+          style={{ display: "flex", flexDirection: "row", alignSelf: "center" }}
+        >
           <Lights direction="south" />
           <Lanes direction="north" />
         </div>

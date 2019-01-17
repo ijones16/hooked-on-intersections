@@ -22,15 +22,13 @@ function TrafficLane({ lightColor, direction }) {
         alignItems: "center"
       };
 
+  const southEastLaneStyles = isSouthEast ? { justifyContent: "flex-end" } : {};
+
   useEffect(
     () => {
       const clearTrafficIntervalId = setInterval(() => {
         setCars(cars => {
-          if (isSouthEast) {
-            return [1, ...cars];
-          } else {
-            return [...cars, 1];
-          }
+          return [...cars, 1];
         });
       }, 1500);
 
@@ -72,7 +70,7 @@ function TrafficLane({ lightColor, direction }) {
   );
 
   return (
-    <div style={{ ...styles, background: "lightgrey" }}>
+    <div style={{ ...styles, ...southEastLaneStyles, background: "lightgrey" }}>
       {cars.map(car => (
         <div
           style={{
