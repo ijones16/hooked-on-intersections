@@ -1,14 +1,26 @@
 import React from "react";
-import TrafficLight from "./components/TrafficLight";
+import NorthTrafficLights from "./components/NorthTrafficLights";
+import EastTrafficLights from "./components/EastTrafficLights";
+import SouthTrafficLights from "./components/SouthTrafficLights";
+import WestTrafficLights from "./components/WestTrafficLights";
 
-function Lights({ direction, lights = [] }) {
-  return (
-    <div style={{ display: "flex", flexDirection: "row", height: 35 }}>
-      {lights.map((lightColor, index) => (
-        <TrafficLight lightColor={lightColor} direction={direction} />
-      ))}
-    </div>
-  );
+function Lights({ direction }) {
+  let TrafficLights;
+  switch (direction) {
+    case "north":
+      TrafficLights = NorthTrafficLights;
+      break;
+    case "east":
+      TrafficLights = EastTrafficLights;
+      break;
+    case "south":
+      TrafficLights = SouthTrafficLights;
+      break;
+    case "west":
+      TrafficLights = WestTrafficLights;
+      break;
+  }
+  return <TrafficLights />;
 }
 
 export default Lights;
