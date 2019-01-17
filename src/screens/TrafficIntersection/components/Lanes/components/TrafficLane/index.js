@@ -4,6 +4,7 @@ import getRandomInt from "./lib/getRandomInt";
 function TrafficLane({ lightColor, direction }) {
   const [cars, setCars] = useState([1]);
   const isGreenLight = lightColor === "green";
+  const isYellowLight = lightColor === "yellow";
   const isNorthOrSouth = direction === "north" || direction === "south";
   const isSouthEast = direction === "south" || direction === "east";
 
@@ -52,7 +53,7 @@ function TrafficLane({ lightColor, direction }) {
   useEffect(
     () => {
       let greenLightIntervalId;
-      if (isGreenLight) {
+      if (isGreenLight || isYellowLight) {
         greenLightIntervalId = setInterval(() => {
           setCars(cars.slice(1));
         }, 1250);
@@ -64,7 +65,7 @@ function TrafficLane({ lightColor, direction }) {
         }
       };
 
-      if (!isGreenLight) {
+      if (!(isGreenLight || isYellowLight)) {
         stopTrafficOnRedLight();
       }
       return () => stopTrafficOnRedLight();
