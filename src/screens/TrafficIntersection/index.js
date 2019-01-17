@@ -15,7 +15,7 @@ function TrafficIntersection() {
       const clearTrafficIntervalId = setInterval(() => {
         setIntersection(trafficLightIntervals[intervalCount]);
         setIntervalCount((intervalCount + 1) % trafficLightIntervals.length);
-      }, 5000);
+      }, 3000);
 
       const clearTraffic = () => {
         if (clearTrafficIntervalId) {

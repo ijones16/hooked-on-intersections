@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
+import getRandomInt from "./lib/getRandomInt";
 
 function TrafficLane({ lightColor, direction }) {
-  const [cars, setCars] = useState([1, 1, 1]);
+  const [cars, setCars] = useState([1]);
   const isGreenLight = lightColor === "green";
   const isNorthOrSouth = direction === "north" || direction === "south";
   const isSouthEast = direction === "south" || direction === "east";
@@ -27,9 +28,11 @@ function TrafficLane({ lightColor, direction }) {
   useEffect(
     () => {
       const clearTrafficIntervalId = setInterval(() => {
-        setCars(cars => {
-          return [...cars, 1];
-        });
+        if (getRandomInt(3) === 1) {
+          setCars(cars => {
+            return [...cars, 1];
+          });
+        }
       }, 1500);
 
       const stopTraffic = () => {
