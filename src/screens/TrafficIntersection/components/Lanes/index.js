@@ -1,14 +1,26 @@
 import React from "react";
-import TrafficLane from "./components/TrafficLane";
+import NorthTrafficLanes from "./components/NorthTrafficLanes";
+import EastTrafficLanes from "./components/EastTrafficLanes";
+import SouthTrafficLanes from "./components/SouthTrafficLanes";
+import WestTrafficLanes from "./components/WestTrafficLanes";
 
-function Lanes({ direction, lanes = [] }) {
-  return (
-    <div style={{ display: "flex", flexDirection: "row" }}>
-      {lanes.map((lightColor, index) => (
-        <TrafficLane lightColor={lightColor} direction={direction} />
-      ))}
-    </div>
-  );
+function Lanes({ direction }) {
+  let TrafficLanes;
+  switch (direction) {
+    case "north":
+      TrafficLanes = NorthTrafficLanes;
+      break;
+    case "east":
+      TrafficLanes = EastTrafficLanes;
+      break;
+    case "south":
+      TrafficLanes = SouthTrafficLanes;
+      break;
+    case "west":
+      TrafficLanes = WestTrafficLanes;
+      break;
+  }
+  return <TrafficLanes direction={direction} />;
 }
 
 export default Lanes;

@@ -1,13 +1,37 @@
 import React, { useState, useEffect } from "react";
 
-function TrafficLane({ lightColor }) {
+function TrafficLane({ lightColor, direction }) {
   const [cars, setCars] = useState([1, 1, 1]);
   const isGreenLight = lightColor === "green";
+  const isNorthOrSouth = direction === "north" || direction === "south";
+  const isSouthEast = direction === "south" || direction === "east";
+
+  const styles = isNorthOrSouth
+    ? {
+        width: 14,
+        height: 50,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center"
+      }
+    : {
+        width: 50,
+        height: 14,
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center"
+      };
 
   useEffect(
     () => {
       const clearTrafficIntervalId = setInterval(() => {
-        setCars(cars => [...cars, 1]);
+        setCars(cars => {
+          if (isSouthEast) {
+            return [1, ...cars];
+          } else {
+            return [...cars, 1];
+          }
+        });
       }, 1500);
 
       const stopTraffic = () => {
@@ -48,16 +72,7 @@ function TrafficLane({ lightColor }) {
   );
 
   return (
-    <div
-      style={{
-        backgroundColor: "lightgrey",
-        width: 14,
-        height: 60,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center"
-      }}
-    >
+    <div style={{ ...styles, background: "lightgrey" }}>
       {cars.map(car => (
         <div
           style={{

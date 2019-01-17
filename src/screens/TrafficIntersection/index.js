@@ -12,7 +12,7 @@ function TrafficIntersection() {
         <div
           style={{ marginBottom: 60, display: "flex", flexDirection: "row" }}
         >
-          <Lanes direction="south" lanes={intersection.south} />
+          <Lanes direction="south" />
           <div style={{ marginTop: 25 }}>
             <Lights direction="north" />
           </div>
@@ -25,7 +25,7 @@ function TrafficIntersection() {
               flexDirection: "column"
             }}
           >
-            <Lanes direction="east" lanes={intersection.east} />
+            <Lanes direction="east" />
             <Lights direction="west" />
           </div>
           <div
@@ -35,12 +35,12 @@ function TrafficIntersection() {
               flexDirection: "column"
             }}
           >
-            <Lanes direction="west" lanes={intersection.west} />
             <Lights direction="east" />
+            <Lanes direction="west" />
           </div>
         </div>
         <div style={{ display: "flex", flexDirection: "row" }}>
-          <Lights direction="south" lights={intersection.south} />
+          <Lights direction="south" />
           <Lanes direction="north" />
         </div>
       </div>
