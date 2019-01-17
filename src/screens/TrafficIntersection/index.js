@@ -1,11 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Lights from "./components/Lights";
 import Lanes from "./components/Lanes";
 import IntersectionContext from "./IntersectionContext";
+import trafficLightIntervals from "./TrafficLightConfigurations";
 
 function TrafficIntersection() {
-  const [intersection, setIntersection] = useState(DEFAULT_INTERSECTION);
+  const [intervalCount, setIntervalCount] = useState(0);
+  const [intersection, setIntersection] = useState(
+    trafficLightIntervals[intervalCount]
+  );
 
+  useEffect(
+    () => {
+      const clearTrafficIntervalId = setInterval(() => {
+        setIntersection(trafficLightIntervals[intervalCount]);
+        setIntervalCount((intervalCount + 1) % trafficLightIntervals.length);
+      }, 5000);
+
+      const clearTraffic = () => {
+        if (clearTrafficIntervalId) {
+          clearInterval(clearTrafficIntervalId);
+        }
+      };
+
+      return () => clearTraffic();
+    },
+    [intervalCount]
+  );
   return (
     <IntersectionContext.Provider value={intersection}>
       <div
@@ -13,7 +34,7 @@ function TrafficIntersection() {
           display: "flex",
           flexDirection: "column",
           width: 300,
-          background: "floralwhite"
+          background: "aliceblue"
         }}
       >
         <div
@@ -69,12 +90,5 @@ function TrafficIntersection() {
     </IntersectionContext.Provider>
   );
 }
-
-const DEFAULT_INTERSECTION = {
-  north: ["red", "green", "green", "green"],
-  east: ["red", "red", "red", "red"],
-  south: ["red", "red", "red", "red"],
-  west: ["red", "red", "red", "red"]
-};
 
 export default TrafficIntersection;

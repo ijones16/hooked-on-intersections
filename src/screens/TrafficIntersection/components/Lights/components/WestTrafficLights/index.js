@@ -2,14 +2,15 @@ import React, { useContext } from "react";
 import Light from "../Light";
 import IntersectionContext from "../../../../IntersectionContext";
 
-function WestTrafficLights() {
+function WestTrafficLights({ direction }) {
   const intersection = useContext(IntersectionContext);
   const lights = intersection.west;
 
   return (
     <div style={{ display: "flex", flexDirection: "column", width: 35 }}>
-      {lights.map(lightColor => (
+      {lights.map((lightColor, index) => (
         <div
+          key={`${direction}-${index}-light`}
           style={{
             border: "2px solid grey",
             height: 10,

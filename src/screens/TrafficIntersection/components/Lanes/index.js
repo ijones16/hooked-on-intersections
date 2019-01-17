@@ -19,6 +19,9 @@ function Lanes({ direction }) {
     case "west":
       TrafficLanes = WestTrafficLanes;
       break;
+    default:
+      TrafficLanes = NorthTrafficLanes;
+      break;
   }
   return <TrafficLanes direction={direction} />;
 }

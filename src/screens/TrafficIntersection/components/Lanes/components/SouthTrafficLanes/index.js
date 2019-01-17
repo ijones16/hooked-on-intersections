@@ -7,8 +7,12 @@ function SouthTrafficLanes({ direction }) {
   const lanes = intersection.south;
   return (
     <div style={{ display: "flex", flexDirection: "row" }}>
-      {lanes.map(lightColor => (
-        <TrafficLane lightColor={lightColor} direction={direction} />
+      {lanes.map((lightColor, index) => (
+        <TrafficLane
+          key={`${direction}-${index}-lane`}
+          lightColor={lightColor}
+          direction={direction}
+        />
       ))}
     </div>
   );

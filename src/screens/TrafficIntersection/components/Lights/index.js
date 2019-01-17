@@ -19,8 +19,11 @@ function Lights({ direction }) {
     case "west":
       TrafficLights = WestTrafficLights;
       break;
+    default:
+      TrafficLights = NorthTrafficLights;
+      break;
   }
-  return <TrafficLights />;
+  return <TrafficLights direction={direction} />;
 }
 
 export default Lights;

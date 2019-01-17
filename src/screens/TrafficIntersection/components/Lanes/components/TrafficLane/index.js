@@ -71,8 +71,9 @@ function TrafficLane({ lightColor, direction }) {
 
   return (
     <div style={{ ...styles, ...southEastLaneStyles, background: "lightgrey" }}>
-      {cars.map(car => (
+      {cars.map((car, index) => (
         <div
+          key={`${index}-car`}
           style={{
             background: "darkgrey",
             borderRadius: 100,

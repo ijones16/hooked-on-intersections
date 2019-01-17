@@ -8,7 +8,11 @@ function NorthTrafficLanes({ direction }) {
   return (
     <div style={{ display: "flex", flexDirection: "row" }}>
       {lanes.map((lightColor, index) => (
-        <TrafficLane lightColor={lightColor} direction={direction} />
+        <TrafficLane
+          key={`${direction}-${index}-lane`}
+          lightColor={lightColor}
+          direction={direction}
+        />
       ))}
     </div>
   );
